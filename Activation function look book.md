@@ -410,3 +410,62 @@ $ \text{Softmax}(x_{i}) = \frac{\exp(x_i)}{\sum_j \exp(x_j)} $
 
 whereas i  is the number of example and J is the number of classes.
 
+Normally, we use softmax in the output layer while doing multi-classification problems. And it turns out while J = 2 it is logistic activation function.
+
+
+
+## Binary Step
+
+Binary step is generally used in the Perceptron linear classifier.  It just simply output 0 and 1 according to the comparison between input x and 0
+
+Lets see the equation for it:
+
+$a^i_j = f(z^i_j) = \begin{cases} 0  \hspace{1em} \text{if} \hspace{0.3em} z^i_j < 0 \\ 1 \hspace{1em} \text{if} \hspace{0.3em} z^i_j > 0 \end{cases}$
+
+ This activation function is useful when the input pattern can only belong to one or two groups, that is, binary classification. 
+
+![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\step.svg)
+
+## ArcTan
+
+This activation function maps the input values in the range (−π/2,π/2)(−π/2,π/2). Its derivative converges quadratically against 0 for large input values. On the other hand, in the sigmoid activation function, the derivative converges exponentially against 0, which can cause problems during back-propagation. 
+
+Lets take a look at its equation and graph:
+
+$a^i_j = f(x^i_j) = \tanh^{-1}(x^i_j)$
+
+![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\arctan.svg)
+
+Its graph is slightly flatter than tanh, so it has a better tendency to differentiate between similar input values.
+
+Lets take a look a its differentiation equation and graph:
+
+
+
+$Arctan'(x)=\frac{1}{1+x^2}$
+
+
+
+## Other Tanh function
+
+There are also other Tanh function which I am not going to explain but just write down their formula and graph
+
+### LeCun's Tanh
+
+$a^i_j = f(x^i_j) = 1.7159 \tanh\!\left( \frac{2}{3} x^i_j\right)$
+
+![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\lecuns-tanh.svg)
+
+
+
+### Hard Tanh
+
+$a^i_j = f(x^i_j) = \max(-1, \min(1, x^i_j))$
+
+![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\hard-tanh.svg)
+
+
+
+## To be continue
+
+I will update this post when I have better understanding toward those listed activation function or I found some other new activation functions useful.
