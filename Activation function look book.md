@@ -20,11 +20,11 @@ and the $\frac{\partial C}{\partial w^{(L)}}$ was calculated by the back propaga
 
 But what if the $\frac{\partial C}{\partial w^{(L)}}$ is extremely small? That is what we called vanishing gradient problem, and this problem will cause the weight and bias in corresponding layers to have very little updates. And the vanishing gradient problem will holds back the model form learning.
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\Activation-functions--2-.png)
+![](img\Activation-functions--2-.png)
 
 And vanishing gradient problem has more effect towards the model that trains different layers with different learning speed.
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\image-2.png)
+![](img\image-2.png)
 
 I hope following equations of gradients in different layers will give you an answer of why this happened.
 
@@ -67,7 +67,7 @@ The equation of ReLU is :$ReLU(x)=max(0,x)$
 
 And plot of the ReLU function is 
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\relu.png)
+![](img\relu.png)
 
 
 
@@ -81,7 +81,7 @@ Which means that we will also get 1 if x is greater than 0 and 0 if x is less or
 
 Here is the graph of ReLU differentiated:
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\relud.png)
+![](img\relud.png)
 
 And that is the reason why  we can avoid vanishing gradient problem. Because it will only gives you 0 or 1, it will never generate a extremely small value like 0.0000000023.
 
@@ -129,7 +129,7 @@ The output while x is less than 0 is depending on both $x$ value and $\alpha$ va
 
 Here is the graph of ELU while $\alpha=0.2$
 
- ![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\elu.png)
+ ![](img\elu.png)
 
 This activation is just slightly different and more complex than the ReLU. It should not be hard to understand. And lets move to the differentiated part.
 
@@ -141,7 +141,7 @@ $\text{ELU}'(x) =    \begin{cases}    \mbox{$1$} & \mbox{if } x > 0\\    \mbox{E
 
 and the graph of it is:
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\elud.png)
+![](img\elud.png)
 
 
 
@@ -176,7 +176,7 @@ $\text{LReLU}(x) =    \begin{cases}    \mbox{$x$} & \mbox{if } x > 0\\    \mbox{
 
 Lets assume that we have $\alpha =0.2$
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\leaky-relu.png)
+![](img\leaky-relu.png)
 
 
 
@@ -186,7 +186,7 @@ Lets take a look at its derivative equation and graph:
 
 $\text{LReLU}'(x) =    \begin{cases}    \mbox{$1$} & \mbox{if } x > 0\\    \mbox{$\alpha$} & \mbox{if } x \leq 0    \end{cases}$
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\LRELU.png)
+![](img\LRELU.png)
 
 ### Summary
 
@@ -223,7 +223,7 @@ $\text{SELU}(x) = \lambda    \begin{cases}    \mbox{$x$} & \mbox{if } x > 0\\   
 
 Please note that there is a $\lambda$ before the bracket. That is, if the input value x is greater than zero, the output value becomes x multiplied by lambda λ. If the input value x is less than or equal to zero, we have a function that goes up to 0, which is our output y, when x is zero. Essentially, when x is less than zero, we multiply alpha with the exponential of the x-value minus the alpha value, and then we multiply by the lambda value. 
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\selu.png)
+![](img\selu.png)
 
 
 
@@ -239,7 +239,7 @@ I will just quote the explanation from Casper Hansen
 >
 > How a [normal distribution looks](https://www.geogebra.org/m/QEayZCpM) with a mean μμ of zero and a standard deviation σ of one.
 >
-> ![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\normal-dis--1-.png)
+> ![](img\normal-dis--1-.png)
 >
 > The output of a SELU is normalized, which could be called *internal normalization*, hence the fact that all the outputs are with a mean of zero and standard deviation of one, as just explained. This is different from *external normalization*, where batch normalization and other methods are used.
 >
@@ -264,7 +264,7 @@ And here is how the differentiated function and graph look like:
 
 $\text{SELU}'(x) = \lambda    \begin{cases}    \mbox{$1$} & \mbox{if } x > 0\\    \mbox{$\alpha e^x$} & \mbox{if } x \leq 0    \end{cases}$
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\relu--6-.png)
+![](img\relu--6-.png)
 
 ### Summary
 
@@ -291,7 +291,7 @@ We can see the equation of GELU is just the combination of $tanh$ and a approxim
 
 And here is the graph of it:
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\gelu.png)
+![](img\gelu.png)
 
  It has a negative coefficient, which shifts to a positive coefficient. So when x is greater than zero, the output will be x, except from when x=0 to x=1, where it slightly leans to a smaller y-value. 
 
@@ -301,7 +301,7 @@ $\text{GELU}'(x) = 0.5\text{tanh}(0.0356774x^3 + 0.797885 x) + (0.0535161 x^3 + 
 
 (Thanks to WolframAlpha)
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\gelu-diff.png)
+![](img\gelu-diff.png)
 
 
 
@@ -328,7 +328,7 @@ Lets take a look at its equation and graph:
 
 $\text{sigmoid}(x) = \sigma = \frac{1}{1+e^{-x}}$
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\sigmoid--1-.png)
+![](img\sigmoid--1-.png)
 
 
 
@@ -338,7 +338,7 @@ And lets take a look at its differentiation equation and graph:
 
 $Sigmoid'(z) = Sigmoid(z) \cdot (1 - Sigmoid(z))$
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\sigmoid_prime.png)
+![](img\sigmoid_prime.png)
 
 ### Summary
 
@@ -370,7 +370,7 @@ Lets take a look at its equation and graph:
 
 $tanh(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}$
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\tanh.png)
+![](img\tanh.png)
 
 
 
@@ -380,7 +380,7 @@ Lets move on to the differentiation equation and graph:
 
 $tanh'(z) = 1 - tanh(z)^{2}$
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\tanh_prime.png)
+![](img\tanh_prime.png)
 
 
 
@@ -424,7 +424,7 @@ $a^i_j = f(z^i_j) = \begin{cases} 0  \hspace{1em} \text{if} \hspace{0.3em} z^i_j
 
  This activation function is useful when the input pattern can only belong to one or two groups, that is, binary classification. 
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\step.svg)
+![](img\step.svg)
 
 ## ArcTan
 
@@ -434,7 +434,7 @@ Lets take a look at its equation and graph:
 
 $a^i_j = f(x^i_j) = \tanh^{-1}(x^i_j)$
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\arctan.svg)
+![](img\arctan.svg)
 
 Its graph is slightly flatter than tanh, so it has a better tendency to differentiate between similar input values.
 
@@ -454,7 +454,7 @@ There are also other Tanh function which I am not going to explain but just writ
 
 $a^i_j = f(x^i_j) = 1.7159 \tanh\!\left( \frac{2}{3} x^i_j\right)$
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\lecuns-tanh.svg)
+![](img\lecuns-tanh.svg)
 
 
 
@@ -462,10 +462,11 @@ $a^i_j = f(x^i_j) = 1.7159 \tanh\!\left( \frac{2}{3} x^i_j\right)$
 
 $a^i_j = f(x^i_j) = \max(-1, \min(1, x^i_j))$
 
-![](E:\Edu\MarkdownNotes\Deeplearning-notes\img\hard-tanh.svg)
+![](img\hard-tanh.svg)
 
 
 
 ## To be continue
 
 I will update this post when I have better understanding toward those listed activation function or I found some other new activation functions useful.
+
