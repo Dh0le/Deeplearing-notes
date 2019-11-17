@@ -12,3 +12,5 @@ This doc is not included in the course it introduce several popular CNN models w
 
 
 
+The implementation of these CNN will be post at the end of each chapter.
+
