@@ -1,0 +1,121 @@
+#Natural language processing
+
+## Word representation
+
+Computer cannot recognize the word like human so we do representation for words so that computer can understand them.
+
+### One-representationtion
+
+We use a vector to represent a word which there all only "1" in vector and rest element are "0"s.
+
+![](img\one-hot rep.png)
+
+Shortcoming of one-hot: We isolate every word since their distance are the same and product are zero. Model cannot learning the relevance and similarity of each word.
+
+
+
+### Featurized representation : Word embedding
+
+Using different feature to represent different word like in following picture:
+
+![](img\Featurized-rep.png)
+
+This representation finely express the relevance and similarity between words, thus the performance of generalization will be better.
+
+If we able to learning 300 dimensional vector we can do T-SNE algorithm we can find 2D visualization of these data.
+
+![](img\Word-embedding.png)
+
+## Use word embedding
+
+Name entity recognition example:
+
+![](img\name entitiy_example.png)
+
+Assume that we have a relative small training set that does not contain durian and cultivator. It is hard to detect these name entity, but if we have a learning word embedding that told us Durian is a kind of fruit and cultivator is like farmer then we might detect these name entity from our small training set.
+
+
+
+### Transfer learning and word embeddings:
+
+1. Learn word embedding from large text corpus. (1-100billion words) or download pretrained embedding online.
+2. Transfer embedding to new task with smaller training set.(100k words)
+3. Optional: Continue to finetune the word embeddings with new data.
+
+
+
+### Relation to face encoding(embedding)
+
+For face recognition, we always encode face into different encodings as their unique representation, word embedding is kind of similar to face recognition.
+
+![](img\Word_face.png)
+
+But there are difference, for face recognition,we can randomly place  a face encoding into our network and output a encoding but for word embedding all the embeddings are mean to stay in a fix table and find the relationship between each other.
+
+
+
+## Properties of word embeddings
+
+### Analogies:
+
+There is important feature of word embeddings: Analogies reasoning, we can do subtraction between each word embeddings and found their relation.
+
+This concept help research to have better understanding to word embedding.
+
+![](img\Analogies.png)
+
+If we do subtraction on man and woman, king and queen , we will find out that their main difference is gender.
+
+### Analogies using vectors
+
+Calculating the similarity between words are actually finding the distance similarity  at each dimension for each word.
+
+![](img\analogies1.png)
+
+$e_{man}-e_{woman}\approx e_{king}-e_{?}$
+
+For the equation above, we can use following equation to compute $e_?$:
+
+$arg max sim(e_?,e_{king}-e_{man}+e_{woman})$
+
+Similarity function:
+
+- Cosine similarity : $sim(u,v) = \frac{u^Tv}{||u||_2||v||_2}$
+- Euclidian distance: $||u-v||^2$
+
+
+
+## Embedding matrix 
+
+When we are going to learn a word embedding model, the essence of this process is to learning the embedding matrix $E$. When we learned this matrix, we can multiple this matrix with the one-hot vector corresponding to each word to get the word's embedding.
+
+![](img\embedding matrix.png)
+
+## Learning word embeddings
+
+ In the early stage of learning word embeddings, people create complex algorithm but when time goes on people found that simple algorithm can also create great result with larger data set.
+
+Early stage of learning algorithm: 
+
+In the following example we are going to use previous word to predict last word.
+
+- Multiply the one-hot vector with embedding matrix and get word embeddings.
+- Have a fixed historical window (fix number previous word required by predicting next word) . Stack the word in the window into an input vector of the neural network.
+- Then we use softmax layer to output the probability of each word.
+- All the hidden layer and softmax layer have their parameter. Assumed that our corpus has 10000 words and each word embedding is 300 dimensional. Historical window has size of 4. Then we are going to input $300\times 4$ and output 10000
+- Parameters of the model are embedding matrix, weight of hidden layer and softmax layer $w^{[1]},b^{[1]},w^{[2]},b^{[2]}$ 
+- Then we used back propagation to perform gradient descent to train the maximum likelihood  function and predict next word.
+
+In the training process, if the algorithm will try to best fit the training set, it make similar words to have similar feature vector and thus format the embedding matrix $E$
+
+There are several method to select words to predict next word:
+
+- Select several words before target word
+- Select several words after target word
+- Select one word before target word
+- Select a random word near target word.
+
+
+
+
+
